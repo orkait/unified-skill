@@ -44,11 +44,11 @@ activation:
 
 # unified-mcp Skill
 
-This skill relies on [unified-mcp](https://github.com/orkait/unified-mcp). Always use the MCP tools below for all API details, props, code examples, patterns, and transitions. This skill covers judgment, gotchas, and decisions only — unified-mcp provides all actual data.
+This skill relies on [unified-mcp](https://github.com/orkait/unified-mcp). Always use the MCP tools below for all API details, props, code examples, patterns, and transitions. This skill covers judgment, gotchas, and decisions only - unified-mcp provides all actual data.
 
 ---
 
-## React Flow — MCP Tools
+## React Flow - MCP Tools
 
 | Tool | What it returns |
 |------|----------------|
@@ -67,21 +67,21 @@ Templates: custom-node, custom-edge, zustand-store
 
 ---
 
-## React Flow — Critical Rules
+## React Flow - Critical Rules
 
-- nodeTypes and edgeTypes must be defined outside components — never inline, causes remount on every render
-- memo() all custom nodes and edges — they re-render aggressively otherwise
-- node.measured.width/height is read-only — set by the library, do not set it yourself
-- deleteElements() is async — returns Promise with deletedNodes and deletedEdges
-- onBeforeDelete must be async — return Promise false to cancel, Promise true to confirm
+- nodeTypes and edgeTypes must be defined outside components - never inline, causes remount on every render
+- memo() all custom nodes and edges - they re-render aggressively otherwise
+- node.measured.width/height is read-only - set by the library, do not set it yourself
+- deleteElements() is async - returns Promise with deletedNodes and deletedEdges
+- onBeforeDelete must be async - return Promise false to cancel, Promise true to confirm
 - Hooks outside ReactFlow must be wrapped in ReactFlowProvider
-- getNode() and getEdge() return undefined (not null) when not found — v12 change
-- useUpdateNodeInternals() — call after adding or removing handles programmatically
-- Attribution — use proOptions hideAttribution on free tier
+- getNode() and getEdge() return undefined (not null) when not found - v12 change
+- useUpdateNodeInternals() - call after adding or removing handles programmatically
+- Attribution - use proOptions hideAttribution on free tier
 
 ---
 
-## React Flow — Decisions
+## React Flow - Decisions
 
 State management: single component use useNodesState and useEdgesState; shared across components use Zustand via reactflow_get_pattern zustand-store; undo/redo needed use Zustand with zundo via reactflow_get_pattern undo-redo
 
@@ -99,7 +99,7 @@ Performance: hide off-screen elements via onlyRenderVisibleElements prop; batch 
 
 ---
 
-## Motion for React — MCP Tools
+## Motion for React - MCP Tools
 
 | Tool | What it returns |
 |------|----------------|
@@ -114,22 +114,22 @@ Example categories: animation, gestures, scroll, layout, exit, drag, hover, svg,
 
 ---
 
-## Motion for React — Critical Rules
+## Motion for React - Critical Rules
 
 - Import from motion/react not framer-motion; framer-motion has been replaced by motion, swap imports and uninstall the old package
-- AnimatePresence goes outside the conditional — wrap the show and component expression, not the inner element
-- exit requires AnimatePresence parent — without it, exit animations are silently ignored
-- AnimatePresence direct children need unique key props — required for tracking mount and unmount
-- MotionValues are NOT React state — do not read them in render; subscribe with useMotionValueEvent
-- AnimatePresence mode popLayout — direct custom component children must be wrapped in forwardRef (React 18) or accept ref as a prop (React 19)
-- useReducedMotion() — always respect for accessibility; check before heavy animations
-- dragConstraints with a ref — pass constraintsRef to a rendered motion.div; pixel object with top left right bottom is the simpler alternative
-- stagger() — import from motion/react, use inside variant transition.delayChildren
-- useScroll container vs target — container is a scrollable element needing overflow scroll or auto; target is an element whose position is tracked within the container; default tracks the viewport
+- AnimatePresence goes outside the conditional - wrap the show and component expression, not the inner element
+- exit requires AnimatePresence parent - without it, exit animations are silently ignored
+- AnimatePresence direct children need unique key props - required for tracking mount and unmount
+- MotionValues are NOT React state - do not read them in render; subscribe with useMotionValueEvent
+- AnimatePresence mode popLayout - direct custom component children must be wrapped in forwardRef (React 18) or accept ref as a prop (React 19)
+- useReducedMotion() - always respect for accessibility; check before heavy animations
+- dragConstraints with a ref - pass constraintsRef to a rendered motion.div; pixel object with top left right bottom is the simpler alternative
+- stagger() - import from motion/react, use inside variant transition.delayChildren
+- useScroll container vs target - container is a scrollable element needing overflow scroll or auto; target is an element whose position is tracked within the container; default tracks the viewport
 
 ---
 
-## Motion for React — Decisions
+## Motion for React - Decisions
 
 Basic animation: simple one-off use initial and animate props on motion.div; reusable states use variants with string labels via motion_get_api motion; imperative control use useAnimate hook via motion_get_api useAnimate
 
